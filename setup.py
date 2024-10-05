@@ -4,7 +4,7 @@ packages = [
     'numpy',
     'scipy',
     'matplotlib',
-    'sklearn',
+    'scikit-learn',
     'tensorflow',
     'cvxpy',
     'torch',
@@ -13,6 +13,7 @@ packages = [
     'pandas',
     'mosek',
     'stpy',
+    'pytorch-minimize'
 ]
 #
 setup(name='sensepy',

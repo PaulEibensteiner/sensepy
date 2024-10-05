@@ -94,11 +94,11 @@ class BeilschmiediaProblem(SpatialProblem):
 		# custom kernel function
 		self.kernel1 = KernelFunction(d = 1, kernel_name="squared_exponential", gamma = self.gamma, kappa = 1)
 		self.kernel2 = KernelFunction(d = 1, kernel_name="squared_exponential", gamma = self.gamma, kappa = 1)
-		kernel = lambda x, y, kappa, group: kappa*1000*self.kernel1.kernel(self.height(x),self.height(y))*self.kernel1.kernel(self.slope(x),self.slope(y))
+		kernel = lambda x, y, kappa, group, offset=0: kappa*1000*self.kernel1.kernel(self.height(x),self.height(y))*self.kernel1.kernel(self.slope(x),self.slope(y))
 		self.kernel = KernelFunction(kernel_function = kernel, d = 2)
 
 		# fit estimator
-		self.estimator = PoissonRateEstimator(None, self.hs2d, d=2, basis=self.basis, kernel_object=self.kernel, B=10e10, b=self.b, m=self.m, jitter=1e-5, opt='cvxpy')
+		self.estimator = PoissonRateEstimator(None, self.hs2d, d=2, basis=self.basis, kernel_object=self.kernel, B=10e10, b=self.b, m=self.m, jitter=1e-5, opt='torch')
 		self.estimator.load_data(self.data)
 		self.estimator.fit_gp()
 
