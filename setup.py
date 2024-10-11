@@ -27,4 +27,6 @@ setup(
     packages=["sensepy"],
     zip_safe=False,
     install_requires=packages,
+    include_package_data=True,
+    package_data={"sensepy": ["benchmarks/data/*.csv"]},
 )

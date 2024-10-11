@@ -41,7 +41,7 @@ We provide 2 tutorials:
 2. Fitting custom Cox process with geopandas maps [Tutorial 2](https://github.com/Mojusko/sensepy/blob/master/sensepy/tutorial/custom-kernel-cox-process.ipynb)
 
 ## Dependencies
-  - Classical: torch, cvxpy, numpy, scipy, sklearn, pymanopt, mosek, pandas, geopandas
+  - Classical: torch, cvxpy, numpy, scipy, scikit-learn, pymanopt, mosek, pandas, geopandas
 
   - 1. stpy (see: <https://github.com/Mojusko/stpy>)
     2. pytorch-minimize <https://github.com/rfeinman/pytorch-minimize>
