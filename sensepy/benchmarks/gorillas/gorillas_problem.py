@@ -19,7 +19,12 @@ class GorillasProblem(SpatialProblem):
         self.hs2d = HierarchicalBorelSets(d=2, interval=[(-1, 1), (-1, 1)], levels=2)
         k = KernelFunction(gamma=gamma, d=2)
         self.estimator = PoissonRateEstimator(
-            None, self.hs2d, d=2, kernel_object=k, B=100.0, m=m, jitter=10e-6
+            self.hs2d,
+            d=2,
+            kernel=k,
+            max_intensity=100.0,
+            basis_size_per_dim=m,
+            jitter=10e-6,
         )
 
     def load_data(self, size=10, prefix="../data/"):
@@ -60,7 +65,13 @@ class GorillasProblem(SpatialProblem):
 
         hs2d = HierarchicalBorelSets(d=2, interval=[(-1, 1), (-1, 1)], levels=5)
         self.estimator = PoissonRateEstimator(
-            None, hs2d, d=2, kernel_object=k, b=0.0, B=1000000.0, m=self.m, jitter=10e-6
+            hs2d,
+            d=2,
+            kernel=k,
+            min_intensity=0.0,
+            max_intensity=1000000.0,
+            basis_size_per_dim=self.m,
+            jitter=10e-6,
         )
 
         D = BorelSet(2, bounds=torch.Tensor([[-1.0, 1.0], [-1, 1]]).double())

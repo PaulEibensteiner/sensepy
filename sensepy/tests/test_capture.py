@@ -13,8 +13,8 @@ __status__ = "DEV"
 from sensepy import PoissonRateEstimator
 from sensepy import PoissonPointProcess
 from sensepy import CaptureUCB, CaptureThompson, CaptureIDS
-from stpy import HierarchicalBorelSets, BorelSet
-from stpy import KernelFunction
+from stpy.borel_set import HierarchicalBorelSets, BorelSet
+from stpy.kernels import KernelFunction
 import torch
 import pytest
 
@@ -36,17 +36,16 @@ def example_setup_count_record():
     actions = hierarchical_structure.get_sets_level(action_level)
     k = KernelFunction(gamma=gamma, kappa=B, d=d)
     estimator = PoissonRateEstimator(
-        process,
         hierarchical_structure,
-        kernel_object=k,
-        B=B + b,
-        b=b,
-        m=m,
+        kernel=k,
+        max_intensity=B + b,
+        min_intensity=b,
+        basis_size_per_dim=m,
         jitter=10e-3,
         estimator="likelihood",
         uncertainty="laplace",
         approx="ellipsoid",
-        feedback="count-record",
+        feedback_type="count-record",
     )
     vol = basic_sets[0].volume()
     dt = 1.0 / (vol * b)
@@ -74,17 +73,16 @@ def example_setup_histogram():
     actions = hierarchical_structure.get_sets_level(action_level)
     k = KernelFunction(gamma=gamma, kappa=B, d=d)
     estimator = PoissonRateEstimator(
-        process,
         hierarchical_structure,
-        kernel_object=k,
-        B=B + b,
-        b=b,
-        m=m,
+        kernel=k,
+        max_intensity=B + b,
+        min_intensity=b,
+        basis_size_per_dim=m,
         jitter=10e-3,
         estimator="likelihood",
         uncertainty="laplace",
         approx="ellipsoid",
-        feedback="histogram",
+        feedback_type="histogram",
     )
     vol = basic_sets[0].volume()
     dt = 1.0 / (vol * b)

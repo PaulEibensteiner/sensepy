@@ -113,16 +113,15 @@ class BeilschmiediaProblem(SpatialProblem):
 
         # fit estimator
         self.estimator = PoissonRateEstimator(
-            None,
             self.hs2d,
             d=2,
             basis=self.basis,
-            kernel_object=self.kernel,
-            B=10e10,
-            b=self.b,
-            m=self.m,
+            kernel=self.kernel,
+            max_intensity=10e10,
+            min_intensity=self.b,
+            basis_size_per_dim=self.m,
             jitter=1e-5,
-            opt="torch",
+            optimization_library="torch",
         )
         self.estimator.load_data(self.data)
         self.estimator.fit_gp()

@@ -13,8 +13,8 @@ __status__ = "DEV"
 from sensepy import PoissonRateEstimator
 from sensepy import PoissonPointProcess
 from sensepy import GammaPriorThopsonSampling
-from stpy import HierarchicalBorelSets, BorelSet
-from stpy import KernelFunction
+from stpy.borel_set import HierarchicalBorelSets, BorelSet
+from stpy.kernels import KernelFunction
 import torch
 import pytest
 

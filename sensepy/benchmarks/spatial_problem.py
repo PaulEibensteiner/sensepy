@@ -37,13 +37,12 @@ class SpatialProblem(ABC):
             raise NotImplementedError("Not implemented yet")
         else:
             self.estimator = PoissonRateEstimator(
-                None,
                 self.hs2d,
                 basis=estimator_basis,
                 d=d,
-                kernel_object=k,
-                B=B,
-                m=m,
+                kernel=k,
+                max_intensity=B,
+                basis_size_per_dim=m,
                 jitter=jitter,
             )
 

@@ -102,14 +102,13 @@ class CholeraProblem(SpatialProblem):
         self.k = KernelFunction(d=2, kernel_function=k_func)
 
         self.estimator = PoissonRateEstimator(
-            None,
             self.hs2d,
             d=2,
-            kernel_object=self.k,
-            B=1000000.0,
-            m=self.m,
+            kernel=self.k,
+            max_intensity=1000000.0,
+            basis_size_per_dim=self.m,
             jitter=1e-5,
-            b=self.b,
+            min_intensity=self.b,
         )
         self.estimator.load_data(data)
 

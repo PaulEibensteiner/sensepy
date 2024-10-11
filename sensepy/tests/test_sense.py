@@ -13,8 +13,8 @@ __status__ = "DEV"
 from sensepy import PoissonRateEstimator
 from sensepy import PoissonPointProcess
 from sensepy import EpsilonGreedySense, SenseEntropy, Top2Thompson
-from stpy import HierarchicalBorelSets, BorelSet
-from stpy import KernelFunction
+from stpy.borel_set import HierarchicalBorelSets, BorelSet
+from stpy.kernels import KernelFunction
 import torch
 import pytest
 
@@ -32,12 +32,12 @@ def test_capture_epsilon_greedy():
 
     k = KernelFunction(gamma=gamma, kappa=B)
     estimator = PoissonRateEstimator(
-        process,
         hierarchical_structure,
-        kernel_object=k,
-        B=B + b,
-        b=b,
-        m=100,
+        d=1,
+        kernel=k,
+        max_intensity=B + b,
+        min_intensity=b,
+        basis_size_per_dim=100,
         jitter=1e-4,
     )
 
@@ -71,12 +71,12 @@ def example_setup_count_record():
 
     k = KernelFunction(gamma=gamma, kappa=B)
     estimator = PoissonRateEstimator(
-        process,
         hierarchical_structure,
-        kernel_object=k,
-        B=B + b,
-        b=b,
-        m=m,
+        d=1,
+        kernel=k,
+        max_intensity=B + b,
+        min_intensity=b,
+        basis_size_per_dim=m,
         jitter=10e-4,
         approx="ellipsoid",
     )
