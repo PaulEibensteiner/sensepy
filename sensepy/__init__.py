@@ -8,4 +8,4 @@ from sensepy.gammaprior_thompson import *
 
 
 def __version__():
-	return 0.1
+    return 0.1
