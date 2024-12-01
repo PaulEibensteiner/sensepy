@@ -53,7 +53,7 @@ class CaptureUCB(SensingAlgorithm):
         scores = []
         for action in actions:
             scores.append(self.estimator.ucb(action, dt=self.dt) / self.w(action))
-        return torch.Tensor(scores).double()
+        return torch.tensor(scores).double()
 
     def add_data(self, data_point: Tuple[BorelSet, torch.Tensor, float]) -> None:
         """

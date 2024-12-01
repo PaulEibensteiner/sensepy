@@ -21,7 +21,7 @@ class CholeraProblem(SpatialProblem):
         self.m = m
         self.b = b
         self.gamma = gamma
-        self.D = BorelSet(2, bounds=torch.Tensor([[-1.0, 1.0], [-1, 1]]).double())
+        self.D = BorelSet(2, bounds=torch.tensor([[-1.0, 1.0], [-1, 1]]).double())
 
     def load_data(self, name_prefix="../data/"):
         pumps = pd.read_csv(name_prefix + "pumps.csv")
@@ -90,7 +90,7 @@ class CholeraProblem(SpatialProblem):
         obs_pumps = obs_pumps.astype(float)
 
         m = obs_pumps.shape[0]
-        GP = NystromFeatures(kernel, m=torch.Tensor([m]), s=10e-6, approx="svd")
+        GP = NystromFeatures(kernel, m=torch.tensor([m]), s=10e-6, approx="svd")
 
         obs_pumps = torch.from_numpy(obs_pumps)
         y = torch.zeros(size=(obs_pumps.size()[0], 1))

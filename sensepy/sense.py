@@ -197,7 +197,7 @@ class EpsilonGreedySense(SensingAlgorithm):
             for action in actions:
                 scores.append(np.random.randn())
 
-        return torch.Tensor(scores).double()
+        return torch.tensor(scores).double()
 
     def add_data(self, data_point: Tuple) -> None:
         """

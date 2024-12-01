@@ -27,7 +27,7 @@ class SpatialProblem(ABC):
 
         gamma = 0.15
         # domain
-        self.D = BorelSet(2, bounds=torch.Tensor([[-1.0, 1.0], [-1, 1]]).double())
+        self.D = BorelSet(2, bounds=torch.tensor([[-1.0, 1.0], [-1, 1]]).double())
 
         # hierarchical sets
         self.hs2d = HierarchicalBorelSets(d=d, interval=[(-1, 1), (-1, 1)], levels=5)

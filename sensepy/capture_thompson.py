@@ -23,4 +23,4 @@ class CaptureThompson(CaptureUCB):
         for action in actions:
             score = self.estimator.sample_value(action) * self.dt / self.w(action)
             scores.append(score)
-        return torch.Tensor(scores).double()
+        return torch.tensor(scores).double()

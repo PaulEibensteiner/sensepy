@@ -16,7 +16,7 @@ class BeilschmiediaProblem(SpatialProblem):
 
     def __init__(self, m=20, levels=4, b=0.1, gamma=0.1, basis="triangle"):
         super().__init__(m)
-        self.D = BorelSet(2, bounds=torch.Tensor([[-1.0, 1.0], [-1, 1]]).double())
+        self.D = BorelSet(2, bounds=torch.tensor([[-1.0, 1.0], [-1, 1]]).double())
         self.hs2d = HierarchicalBorelSets(
             d=2, interval=[(-1, 1), (-1, 1)], levels=levels
         )

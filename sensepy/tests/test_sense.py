@@ -67,7 +67,7 @@ def example_setup_count_record():
     hierarchical_structure = HierarchicalBorelSets(d=1, interval=(-1, 1), levels=levels)
     actions = hierarchical_structure.get_all_sets()
 
-    D = BorelSet(1, bounds=torch.Tensor([[-1.0, 1.0]]).double())
+    D = BorelSet(1, bounds=torch.tensor([[-1.0, 1.0]]).double())
 
     k = KernelFunction(gamma=gamma, kappa=B)
     estimator = PoissonRateEstimator(

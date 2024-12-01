@@ -62,7 +62,7 @@ class GammaPriorThopsonSampling(SensingAlgorithm):
             else:
                 for index, elementary in enumerate(self.basic_sets):
                     if S.inside(elementary) == True:
-                        data_basic[index].append(torch.Tensor([]))
+                        data_basic[index].append(torch.tensor([]))
                         counts[index] += 1
                     sensing_times[index].append(dt)
 
@@ -116,4 +116,4 @@ class GammaPriorThopsonSampling(SensingAlgorithm):
                     score = float(score) + float(scores_basic[id_region])
             scores.append(score / float(self.w(action)))
 
-        return torch.Tensor(scores).double()
+        return torch.tensor(scores).double()

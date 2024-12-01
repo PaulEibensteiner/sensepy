@@ -15,7 +15,7 @@ class GorillasProblem(SpatialProblem):
         self.n = n
         self.m = m
         gamma = 0.2
-        self.D = BorelSet(2, bounds=torch.Tensor([[-1.0, 1.0], [-1, 1]]).double())
+        self.D = BorelSet(2, bounds=torch.tensor([[-1.0, 1.0], [-1, 1]]).double())
         self.hs2d = HierarchicalBorelSets(d=2, interval=[(-1, 1), (-1, 1)], levels=2)
         k = KernelFunction(gamma=gamma, d=2)
         self.estimator = PoissonRateEstimator(
@@ -74,7 +74,7 @@ class GorillasProblem(SpatialProblem):
             jitter=10e-6,
         )
 
-        D = BorelSet(2, bounds=torch.Tensor([[-1.0, 1.0], [-1, 1]]).double())
+        D = BorelSet(2, bounds=torch.tensor([[-1.0, 1.0], [-1, 1]]).double())
         self.D = D
         data = [(D, obs, dt)]
         self.obs = obs
